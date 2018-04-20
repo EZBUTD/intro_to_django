@@ -19,13 +19,11 @@ def index1(request):
 def sign1(request): #this handles the POST request and stores the data in a table.
     if request.method =='POST':
         form=CommentForm(request.POST)
-        
-    
         if form.is_valid():
             try:
                 ID_test=Comment.objects.filter(Identifier=request.POST['Identifier']).values('comments')[0]['comments'] #test if existing comment is there. If it isn't it will return an IndexError.
                 update_comment=Comment.objects.filter(Identifier=request.POST['Identifier']).update(comments=request.POST['comments'], name=request.POST['name']) #if it is, then update it
-            except IndexError:#if existing comment does not exist, create a new row
+            except IndexError:#if existing comment does not exist, create a new row. If the user wants a separate row for each comment, remove the try portion of this code.
                 new_comment=Comment(Identifier=request.POST['Identifier'], name=request.POST['name'], comments=request.POST['comments'])
                 new_comment.save()
             return redirect('index')
@@ -43,7 +41,7 @@ def sign_detail21(request, ID_value): #this handles filling in the form with an 
     except IndexError: #error for when there is no existing comment to pull, pass in blank value instead
         comments = ''
     if request.method =='POST':
-        form=TestForm(request.POST)      
+        form=TestForm(request.POST)    
     else:
         form=TestForm(initial=dict(Identifier=ID_value,comments=comments))
 

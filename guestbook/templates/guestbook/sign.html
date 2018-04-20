@@ -22,7 +22,7 @@
 
     <div class="container">
       
-      <form class="form-signin" method="POST" action="{% url 'sign' %}">
+      <form class="form-signin" method="POST" action="{% url 'sign_guest' %}">
         {% csrf_token %}
         <h2 class="form-signin-heading">Sign the Guest Book</h2>
         <div class="form-group">
