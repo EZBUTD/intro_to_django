@@ -1,0 +1,41 @@
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Comment Log</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'form/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="{% static 'form/bootstrap-theme.min.css'%}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'form/theme.css'%}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container theme-showcase" role="main">
+
+      <div class="well">
+        <h3>Comment Log</h3>
+        <a type="button" class="btn btn-link" href="{% url 'sign'%}">Enter Comment</a>
+      </div>
+
+      {% for c in comments %}
+      <div class="well">
+        <p>{{c.Identifier}}</p>
+        <p>{{c.name}}</p>  <p>{{c.comments}}</p>
+      </div>
+      {% endfor %}
+    </div> <!-- /container -->
+
+  </body>
+</html>
